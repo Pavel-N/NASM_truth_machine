@@ -21,4 +21,4 @@ Implementing it will mainly test these capabilities of a language:
   * Output 1 infinitely
 
 ## How to Run It?
-Repo already includes an ELF 32-bit LSB executable which runs on linux. You can assemble it again using included makefile.
+Repo already includes an ELF 32-bit LSB executable which runs on linux. You can assemble it again using included makefile or link the compiled object file.
