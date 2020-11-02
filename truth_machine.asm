@@ -50,7 +50,7 @@ _start:
 	mov ebx, 0
 	int 0x80
 
-; Print '1' in
+; Print '1'
 _printOneLoop:
 	print num, num_len 		; Print '1'
 	jmp _printOneLoop
