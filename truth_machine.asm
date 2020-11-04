@@ -33,22 +33,25 @@ _start:
 	mov eax, 3			; Move 3 to register eax - sys_read
 	mov ebx, 0			; Set register to 0	
 	mov ecx, num			; Set register ecx to reserved memory num
-	mov	edx, num_len		; Set register edx to number of chars to recieve - num_len = 1
+	mov edx, num_len		; Set register edx to number of chars to recieve - num_len = 1
 	int 0x80			; Call kernel
 
 					; If:
 	mov al, [num]			; Move memory contents of num to register al
 	cmp al, '1'			; Compare register al to '1'
-	je	_printOneLoop		; If al == '1' jump to _printOneLoop
+	je _printOneLoop		; If al == '1' jump to _printOneLoop
+					; Else if:
+	cmp al, '0'			; Compare register al to '0'
+	jne _exit			; If al != '0' jump to _exit
+
 					; Else:
 	print num, num_len		; Print '0' 
 	print NEW_LINE, 1		; Print '\n'
 	
-					; Exiting program
+_exit:					; Exiting program
 	mov eax, 1			; Move 1 to register eax - sys_exit
 	mov ebx, 0			; Set exit code to 0 - no errors
 	int 0x80			; Call kernel
-
 
 _printOneLoop:				; Prints 1 infinietely.
 	print num, num_len 		; Print '1'
